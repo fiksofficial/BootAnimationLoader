@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#1a1b1f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>BootAnimation Loader</title>
+  <link rel="stylesheet" href="assets/css/material-you.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <noscript>
+    <div style="padding:32px;text-align:center;color:#ffb4ab">
+      <h2 data-i18n="noscriptTitle">JavaScript отключён</h2>
+      <p data-i18n="noscriptMsg">Включите JavaScript для работы WebUI.</p>
+    </div>
+  </noscript>
+
+  <div class="app-container">
+
+    <header class="app-header" role="banner">
+      <div class="header-content">
+        <h1 class="app-title">BootAnimation Loader</h1>
+        <p class="app-subtitle" data-i18n="subtitle">Systemless bootanimation installer</p>
+      </div>
+      <div class="header-lang">
+        <select id="lang-select" aria-label="Language">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+          <option value="uk">Українська</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="pt">Português</option>
+          <option value="it">Italiano</option>
+          <option value="tr">Türkçe</option>
+          <option value="pl">Polski</option>
+          <option value="zh">中文</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="app-main" role="main">
+
+      <section aria-labelledby="sec-device">
+        <h2 class="section-title" id="sec-device" data-i18n="device">Устройство</h2>
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <span class="card-label" data-i18n="model">Модель</span>
+            <span class="card-value" id="device-model">...</span>
+          </div>
+          <div class="dashboard-card">
+            <span class="card-label">Android</span>
+            <span class="card-value" id="android-version">...</span>
+          </div>
+          <div class="dashboard-card">
+            <span class="card-label" data-i18n="currentBootanim">Текущий bootanimation</span>
+            <span class="card-value card-value--small" id="current-bootanim">...</span>
+          </div>
+        </div>
+
+        <div class="bootanimation-details">
+          <h3 class="details-title" data-i18n="currentProps">Характеристики текущего</h3>
+          <div class="details-grid">
+            <div class="detail-item">
+              <span class="detail-label" data-i18n="resolution">Разрешение</span>
+              <span class="detail-value" id="cur-res">—</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">FPS</span>
+              <span class="detail-value" id="cur-fps">—</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label" data-i18n="parts">Части</span>
+              <span class="detail-value" id="cur-parts">—</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label" data-i18n="size">Размер</span>
+              <span class="detail-value" id="cur-size">—</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="sec-upload">
+        <h2 class="section-title" id="sec-upload" data-i18n="installNew">Установить новый</h2>
+
+        <div class="upload-container">
+          <div class="upload-area" id="upload-area" role="button" tabindex="0" data-i18n-attr="aria-label:selectFile">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <p class="upload-text" data-i18n="clickToSelect">Нажмите для выбора bootanimation.zip</p>
+          </div>
+
+          <div id="file-preview" class="file-preview" hidden>
+            <div class="preview-content">
+              <p class="preview-filename" id="preview-filename"></p>
+              <div class="preview-info">
+                <span id="preview-size"></span>
+              </div>
+            </div>
+          </div>
+
+          <div id="upload-progress" class="upload-progress" hidden>
+            <div class="upload-progress-track">
+              <div class="upload-progress-fill" id="upload-progress-fill"></div>
+            </div>
+            <span class="upload-progress-label" id="upload-progress-label"></span>
+          </div>
+        </div>
+
+        <div id="validation-results" class="validation-results" hidden>
+          <h3 class="validation-title" data-i18n="info">Информация</h3>
+          <div class="validation-grid">
+            <div class="validation-item">
+              <span class="validation-label" data-i18n="resolution">Разрешение</span>
+              <span class="validation-value" id="val-res">—</span>
+            </div>
+            <div class="validation-item">
+              <span class="validation-label">FPS</span>
+              <span class="validation-value" id="val-fps">—</span>
+            </div>
+            <div class="validation-item">
+              <span class="validation-label" data-i18n="parts">Части</span>
+              <span class="validation-value" id="val-parts">—</span>
+            </div>
+            <div class="validation-item">
+              <span class="validation-label" data-i18n="size">Размер</span>
+              <span class="validation-value" id="val-size">—</span>
+            </div>
+          </div>
+          <div id="validation-message" class="validation-message"></div>
+        </div>
+
+        <div class="button-group">
+          <button id="install-btn" class="btn btn-primary" disabled data-i18n="install" data-i18n-attr="aria-label:install">Установить</button>
+          <button id="clear-btn" class="btn btn-secondary" hidden data-i18n="clear">Очистить</button>
+        </div>
+      </section>
+
+      <section aria-labelledby="sec-actions">
+        <h2 class="section-title" id="sec-actions" data-i18n="manage">Управление</h2>
+        <div class="actions-card">
+          <div class="action-row">
+            <div class="action-info">
+              <span class="action-label" data-i18n="deleteCustom">Удалить кастомный bootanimation</span>
+              <span class="action-desc" data-i18n="deleteDesc">Убирает установленный файл, вернётся заводской при перезагрузке</span>
+            </div>
+            <button id="restore-btn" class="btn btn-outline-warn" data-i18n-attr="aria-label:deleteCustom" data-i18n="delete">Удалить</button>
+          </div>
+          <div class="action-divider"></div>
+          <div class="action-row">
+            <div class="action-info">
+              <span class="action-label" data-i18n="rebootDevice">Перезагрузить устройство</span>
+              <span class="action-desc" data-i18n="applyChanges">Применить изменения</span>
+            </div>
+            <button id="reboot-btn" class="btn btn-outline-danger" data-i18n-attr="aria-label:rebootDevice" data-i18n="reboot">Перезагрузка</button>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="sec-logs">
+        <h2 class="section-title" id="sec-logs" data-i18n="logs">Логи</h2>
+        <div class="logs-tabs" role="tablist">
+          <button class="log-tab active" data-log-type="info" role="tab" aria-selected="true" data-i18n="tabInfo">Инфо</button>
+          <button class="log-tab" data-log-type="error" role="tab" aria-selected="false" data-i18n="tabErrors">Ошибки</button>
+          <button class="log-tab" data-log-type="debug" role="tab" aria-selected="false" data-i18n="tabDebug">Debug</button>
+        </div>
+        <div class="logs-content">
+          <pre id="logs-output" class="logs-output" role="tabpanel">Нет записей.</pre>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer" role="contentinfo">
+      <p data-i18n="footer">BootAnimation Loader · Systemless bootanimation installer</p>
+    </footer>
+
+  </div>
+
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <div id="loading-overlay" class="loading-overlay" hidden role="status" aria-live="assertive">
+    <div class="loading-spinner"></div>
+    <p id="loading-text" data-i18n="processing">Обработка...</p>
+  </div>
+
+  <script src="assets/js/locales.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+id=BootAnimationLoader
+name=BootAnimation Loader
+version=1.0.0
+versionCode=10000
+author=fiksofficial | Rodion R.
+description=Systemless bootanimation installer with WebUI dashboard.
+webui=webroot
+minMagisk=20000
+minKernelSU=11000
+minAPatch=10000
+updateJson=https://raw.githubusercontent.com/fiksofficial/BootAnimationLoader/main/update.json
