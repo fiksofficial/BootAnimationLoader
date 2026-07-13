@@ -6,6 +6,7 @@ set_perm_recursive "${MODPATH}/webroot" 0 0 0755 0644
 BOOTANIMATION_PATHS="
 /apex/com.android.bootanimation/etc/bootanimation.zip
 /product/media/bootanimation.zip
+/my_product/media/bootanimation/bootanimation.zip
 /oem/media/bootanimation.zip
 /system/media/bootanimation.zip
 /data/local/bootanimation.zip
